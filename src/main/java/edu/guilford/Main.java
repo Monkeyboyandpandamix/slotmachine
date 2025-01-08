@@ -4,34 +4,38 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        // Instantiate a SlotMachine object with specific values
-        SlotMachine customSlotMachine = new SlotMachine("Cherry", "Cherry", "Cherry", 0.75);
+        // Instantiate one object with values for all attributes
+        SlotMachine slotMachine1 = new SlotMachine("Apple", "Lemon", "Watermelon", 0);
 
         // Create an ArrayList to store SlotMachine objects
         ArrayList<SlotMachine> slotMachines = new ArrayList<>();
 
-        // Add the custom object to the ArrayList
-        slotMachines.add(customSlotMachine);
+        // Add the first object to the ArrayList
+        slotMachines.add(slotMachine1);
 
-        // Loop to instantiate and add 5 random SlotMachine objects
+        // Loop to instantiate at least five objects and add them to the ArrayList
         for (int i = 0; i < 5; i++) {
-            SlotMachine randomSlotMachine = new SlotMachine();
-            slotMachines.add(randomSlotMachine);
+            SlotMachine slotMachine = new SlotMachine();
+            slotMachines.add(slotMachine);
         }
 
-        // Print all SlotMachine objects in the ArrayList
-        System.out.println("Slot Machines:");
-        for (SlotMachine slotMachine : slotMachines) {
-            System.out.println(slotMachine);
-        }
+        // Variables to keep track of wins and losses
+        int wins = 0;
+        int losses = 0;
 
-        // Analysis: Count the number of winners
-        int winCount = 0;
-        for (SlotMachine slotMachine : slotMachines) {
-            if (slotMachine.spinAndCheckWin()) {
-                winCount++;
+        // Loop to print out all elements of the ArrayList, spin them, and count wins/losses
+        for (int i = 0; i < slotMachines.size(); i++) {
+            SlotMachine slotMachine = slotMachines.get(i);
+            slotMachine.spin(i + 1);
+            if (slotMachine.isWin()) {
+                wins++;
+            } else {
+                losses++;
             }
         }
-        System.out.println("Total wins: " + winCount);
+
+        // Print out the number of wins and losses
+        System.out.println("Wins: " + wins);
+        System.out.println("Losses: " + losses);
     }
 }
